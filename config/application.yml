@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+# (Optional) Force using an in-memory H2 database for quick local testing
+storage:
+  type: local
+executor:
+  type: embedded
+  workers: 4
+
+tasks:
+  defaults:
+    - typeRegex: "io.kestra.plugin.jdbc.duckdb.*"
+      values:
+        # Make sure to allow installing extensions in DuckDB
+        # That might require "unsafe" mode if you run into security restrictions
+        # in certain environments
+        unsafeMode: true
